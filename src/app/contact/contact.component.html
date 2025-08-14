@@ -1,0 +1,82 @@
+<section class="contact-section section">
+  <div class="contact-slider" [ngClass]="{'slide-next': slideIndex === 1}">
+    <div class="contact-slider-inner">
+      <!-- Slide 1: Hero Image -->
+      <div class="hero-slide">
+        <img src="assets/Contact.JPEG" alt="Contact Hero" class="contact-hero-img" />
+        <div class="contact-hero-overlay">
+          <div class="hero-overlay-text" [class.animate-hero-text]="isHeroTextActive">
+            <span class="hero-line1">MY SKILLS,<br>YOUR GOALS,<br>A BETTER FUTURE.</span>
+            <span class="hero-line2">Let's connect.</span>
+          </div>
+        </div>
+          <button class="slide-next-btn" (click)="slideIndex = 1" aria-label="Next slide">
+            <svg width="74" height="74" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.5858 6.34317L12 4.92896L19.0711 12L12 19.0711L10.5858 17.6569L16.2427 12L10.5858 6.34317Z" fill="currentColor"/>
+            </svg>
+          </button>
+      </div>
+      <!-- Slide 2: Blank Page -->
+      <div class="second-slide contact-fullscreen">
+        <button class="slide-back-btn" (click)="slideIndex = 0" aria-label="Previous slide">
+          <svg width="74" height="74" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: rotate(180deg);">
+            <path d="M10.5858 6.34317L12 4.92896L19.0711 12L12 19.0711L10.5858 17.6569L16.2427 12L10.5858 6.34317Z" fill="currentColor"/>
+          </svg>
+        </button>
+        <div class="contact-content">
+          <div class="contact-separator"></div>
+          <div class="contact-card contact-card-flex">
+            <div class="contact-card-left">
+              <div class="contact-avatar">
+                <img src="assets/portrait.png" alt="My Avatar" />
+              </div>
+              <div class="contact-name">Muhammad Adam Luqman</div>
+              <div class="contact-role">Graphics & Multimedia Software | Creative Tech | Digital Designer</div>
+            </div>
+            <div class="contact-card-right">
+              <h2 class="contact-title">Contact Me</h2>
+              <div class="contact-details">
+                <div class="contact-info">
+                  <div class="contact-label">Email:</div>
+                  <a href="mailto:adamluqman.mu&#64;gmail.com" class="contact-link">adamluqman.mu&#64;gmail.com</a>
+                </div>
+                <div class="contact-info-separator"></div>
+                <div class="contact-info">
+                  <div class="contact-label">Phone:</div>
+                  <a href="tel:+60182151516" class="contact-link">+6018-215 1516</a>
+                </div>
+                <div class="contact-info-separator"></div>
+                <div class="contact-info">
+                  <div class="contact-label">Location:</div>
+                  <span class="contact-link">Kuala Lumpur, Malaysia</span>
+                </div>
+              </div>
+              <!-- <div class="contact-socials">
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" aria-label="LinkedIn" class="social-link linkedin">
+                  <img src="https://img.icons8.com/ios/50/0A66C2/linkedin.png" alt="LinkedIn" width="32" height="32" />
+                </a>
+                <a href="https://github.com/yourprofile" target="_blank" aria-label="GitHub" class="social-link github">
+                  <img src="https://img.icons8.com/ios/50/181717/github.png" alt="GitHub" width="32" height="32" />
+                </a>
+                <a href="https://wa.me/1234567890" target="_blank" aria-label="WhatsApp" class="social-link whatsapp">
+                  <img src="https://img.icons8.com/ios/50/25D366/whatsapp--v1.png" alt="WhatsApp" width="32" height="32" />
+                </a>
+                <a href="https://instagram.com/yourprofile" target="_blank" aria-label="Instagram" class="social-link instagram">
+                  <img src="https://img.icons8.com/ios/50/E1306C/instagram-new.png" alt="Instagram" width="32" height="32" />
+                </a>
+              </div> -->
+              <div class="contact-copyright">
+                &copy; 2025 Muhammad Adam Luqman. All rights reserved.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Scroll markers -->
+    <div class="contact-slider-markers">
+      <span class="marker" [class.active]="slideIndex === 0"></span>
+      <span class="marker" [class.active]="slideIndex === 1"></span>
+    </div>
+  </div>
+</section>

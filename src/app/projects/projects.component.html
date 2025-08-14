@@ -1,0 +1,42 @@
+<section class="projects-section section">
+  <h2>Highlights</h2>
+  <p>A collection of works that stands for something <i><b>meaningful</b></i>.<br>More details inside.</p>
+
+  <!-- First row -->
+  <div class="project-grid">
+    <div class="project-card"
+         *ngFor="let project of projects; let i = index"
+         [class.is-open]="openCardIndex === i"
+         (click)="onProjectCardTap(i, $event)"
+         (touchend)="onProjectCardTap(i, $event)">
+        <div class="project-image">
+          <picture>
+            <source *ngIf="project.image.endsWith('.webp')" [srcset]="project.image" type="image/webp">
+            <img [src]="project.image" [alt]="project.title" loading="lazy" decoding="async" />
+          </picture>
+        </div>
+      <div class="project-info">
+        <h3>{{ project.title }}</h3>
+        <p class="project-date">{{ project.date }}</p>
+        <div class="project-divider"></div>
+        <p class="project-description">{{ project.description }}</p>
+        <a class="project-link"
+           *ngIf="project.link"
+           [href]="project.link"
+           target="_blank"
+           rel="noopener">
+           View Details
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+      <!-- Overlay for touch devices to guarantee tap-to-close -->
+      <div *ngIf="openCardIndex === i" class="tap-overlay" (click)="onProjectCardTap(i, $event)"></div>
+    </div>
+  </div>
+</section>
+
+<section class="projects-section">
+  <!-- Cleared all content for the project section -->
+</section>

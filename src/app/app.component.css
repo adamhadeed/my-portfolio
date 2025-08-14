@@ -1,0 +1,816 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700&display=swap');
+
+/* Host variables and base styles */
+:host {
+  --main-white: #fff;
+  --main-black: #111;
+  --main-red: #FF4A9A;
+  --main-red-dark: #4AFFAE;
+  --bright-blue: var(--main-red); /* not used, but fallback */
+  --electric-violet: #7c1fff;
+  --french-violet: #6c2eb7;
+  --vivid-pink: #f029a7;
+  --hot-red: var(--main-red-dark);
+  --orange-red: #ff5722;
+  --gray-900: var(--main-black);
+  --gray-700: #444;
+  --gray-400: #bbb;
+  background: var(--main-white);
+  color: var(--main-black);
+  font-family: 'Raleway', "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+h1, h2, .main-quote {
+  font-family: 'Raleway', sans-serif;
+  color: var(--main-black);
+}
+
+h1 {
+  font-size: 3.125rem;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: -0.125rem;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  color: var(--gray-700);
+}
+
+/* Main layout */
+main {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: inherit;
+  position: relative;
+}
+
+/* Angular logo */
+.angular-logo {
+  max-width: 9.2rem;
+}
+
+/* Content section */
+.content {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 700px;
+  margin-bottom: 3rem;
+}
+
+.content h1 {
+  margin-top: 1.75rem;
+}
+
+.content p {
+  margin-top: 1.5rem;
+}
+
+/* Divider */
+.divider {
+  width: 1px;
+  background: var(--red-to-pink-to-purple-vertical-gradient);
+  margin-inline: 0.5rem;
+}
+
+/* Pill group styles */
+.pill-group {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.pill {
+  display: flex;
+  align-items: center;
+  --pill-accent: var(--bright-blue);
+  background: color-mix(in srgb, var(--pill-accent) 5%, transparent);
+  color: var(--pill-accent);
+  padding-inline: 0.75rem;
+  padding-block: 0.375rem;
+  border-radius: 2.75rem;
+  border: 0;
+  transition: background 0.3s ease;
+  font-family: var(--inter-font);
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.4rem;
+  letter-spacing: -0.00875rem;
+  text-decoration: none;
+}
+
+.pill:hover {
+  background: color-mix(in srgb, var(--pill-accent) 15%, transparent);
+}
+
+/* Pill accent colors */
+.pill-group .pill:nth-child(6n + 1) {
+  --pill-accent: var(--bright-blue);
+}
+.pill-group .pill:nth-child(6n + 2) {
+  --pill-accent: var(--french-violet);
+}
+.pill-group .pill:nth-child(6n + 3),
+.pill-group .pill:nth-child(6n + 4),
+.pill-group .pill:nth-child(6n + 5) {
+  --pill-accent: var(--hot-red);
+}
+
+.pill-group svg {
+  margin-inline-start: 0.25rem;
+}
+
+/* Social links */
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 0.73rem;
+  margin-top: 1.5rem;
+}
+
+.social-links path {
+  transition: fill 0.3s ease;
+  fill: var(--gray-400);
+}
+
+.social-links a:hover svg path {
+  fill: var(--gray-900);
+}
+
+/* Navigation Styles */
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  background: var(--main-white);
+  padding: 1rem 0;
+  z-index: 9999;
+}
+
+.nav-link {
+  margin: 0 1.5rem;
+  text-decoration: none;
+  color: var(--main-red);
+  font-weight: bold;
+  position: relative;
+}
+
+.nav-link.active {
+  color: #4AFFAE;
+}
+
+@media (max-width: 479px) {
+  .nav-bar {
+    display: flex;
+    flex-direction: row;
+    gap: clamp(0.2rem, 2vw, 0.6rem);
+    font-size: clamp(0.85rem, 4vw, 1.1rem);
+    padding-left: clamp(0.1rem, 2vw, 0.5rem);
+    padding-right: clamp(0.1rem, 2vw, 0.5rem);
+    flex-wrap: nowrap !important;
+    overflow-x: hidden;
+    max-width: 100vw;
+    white-space: nowrap;
+    justify-content: center;
+  }
+  .nav-link {
+    margin: 0 clamp(0.1rem, 1vw, 0.3rem);
+    font-size: inherit;
+    padding: clamp(0.2rem, 2vw, 0.5rem) clamp(0.2rem, 2vw, 0.5rem);
+    letter-spacing: -0.01em;
+    min-width: unset;
+    max-width: unset;
+    white-space: nowrap;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 767px) {
+  .nav-bar {
+    display: flex;
+    flex-direction: row;
+    gap: clamp(0.3rem, 2.5vw, 0.8rem);
+    font-size: clamp(1rem, 4vw, 1.25rem);
+    padding-left: clamp(0.2rem, 2vw, 0.7rem);
+    padding-right: clamp(0.2rem, 2vw, 0.7rem);
+    flex-wrap: nowrap !important;
+    overflow-x: hidden;
+    max-width: 100vw;
+    white-space: nowrap;
+    justify-content: center;
+  }
+  .nav-link {
+    margin: 0 clamp(0.15rem, 1vw, 0.4rem);
+    font-size: inherit;
+    padding: clamp(0.25rem, 2vw, 0.6rem) clamp(0.25rem, 2vw, 0.6rem);
+    letter-spacing: -0.01em;
+    min-width: unset;
+    max-width: unset;
+    white-space: nowrap;
+  }
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background: #4AFFAE;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
+.nav-link:hover {
+  transform: translateY(-4px) scale(1.06);
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1), background 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Section Styles - Unified approach for consistent spacing */
+.section {
+  scroll-margin-top: 80px; /* Space for fixed nav bar */
+  background: var(--main-white);
+  color: var(--main-black);
+  margin: 0; /* Remove all margins */
+  padding: 0; /* Remove default padding - each section controls its own */
+  width: 100vw;
+  box-sizing: border-box;
+}
+
+/* Individual Section Heights - Consistent across all devices */
+.home-section {
+  background: var(--main-white);
+  min-height: 100vh; /* Always full screen height */
+  min-height: 100dvh; /* Dynamic viewport height for mobile */
+  padding: 0; /* Home component controls its own padding */
+  display: flex;
+  align-items: center; /* Center content vertically */
+}
+
+.video-section {
+  /* Video component already handles its own sizing with 16:9 aspect ratio */
+  padding: 0;
+  margin: 0;
+}
+
+.about-section {
+  min-height: 50vh; /* Full viewport height */
+  min-height: 50dvh;
+  padding: 0; /* About component controls its own padding */
+  margin: 0;
+}
+
+
+
+.cv-section {
+  min-height: 100vh; /* Full viewport height */
+  min-height: 100dvh;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-section {
+  /* min-height: 100vh; 
+  min-height: 100dvh; */
+  margin: 0; /* No margins anywhere */
+  padding: 0; /* Contact component handles its own layout */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.quote-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.main-quote {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--main-black);
+}
+
+h2 {
+  color: var(--main-red);
+  font-weight: bold;
+}
+
+/* Scatter styles */
+.scatter-quote {
+  font-size: 3.5rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  transition: font-size 0.3s;
+}
+
+.scatter-letter {
+  display: inline-block;
+  transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.7s;
+  will-change: transform, opacity;
+}
+
+
+.pink-cursor {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  background: #ffffff; /* White color for inversion */
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  mix-blend-mode: difference; /* This creates the inverse effect */
+  transform: translate(-50%, -50%);
+  opacity: 1; /* Full opacity */
+  box-shadow: none; /* No glow */
+  transition: width 0.2s, height 0.2s;
+  will-change: transform, left, top; /* Optimize for animations */
+}
+
+/* Hide default cursor */
+body.hide-cursor {
+  cursor: none;
+}
+
+body.hide-cursor * {
+  cursor: none !important;
+}
+
+/* Hide navigation bar when 'hide-nav-bar' class is present */
+body.hide-nav-bar .nav-bar {
+  display: none;
+}
+
+/* Forcefully hide the navigation bar in the Full Gallery section */
+body.router-full-gallery .nav-bar {
+  display: none !important;
+}
+
+.video-section ~ .nav-bar,
+body.router-video .nav-bar {
+  z-index: 0 !important;
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* Mobile First - Extra Small Devices (320px-479px) */
+@media (max-width: 479px) {
+  :host {
+    font-size: clamp(14px, 4vw, 16px);
+  }
+  
+  h1 {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+    letter-spacing: clamp(-0.08rem, -0.02em, -0.1rem);
+    line-height: 0.95;
+  }
+  
+  p {
+    font-size: clamp(0.9rem, 4vw, 1rem);
+    line-height: 1.5;
+  }
+  
+  main {
+    padding: clamp(0.5rem, 3vw, 1rem);
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+  
+  .content {
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: clamp(1.5rem, 6vw, 2rem);
+    gap: clamp(1rem, 4vw, 1.5rem);
+  }
+  
+  .content h1 {
+    margin-top: clamp(1rem, 4vw, 1.5rem);
+    text-align: center;
+  }
+  
+  .content p {
+    margin-top: clamp(1rem, 4vw, 1.2rem);
+    text-align: center;
+  }
+  
+  .divider {
+    height: 1px;
+    width: 80%;
+    margin: clamp(1rem, 4vw, 1.5rem) auto;
+    background: var(--red-to-pink-to-purple-horizontal-gradient);
+  }
+  
+  .pill-group {
+    gap: clamp(0.8rem, 3vw, 1rem);
+    align-items: center;
+    width: 100%;
+  }
+  
+  .pill {
+    padding: clamp(0.5rem, 3vw, 0.8rem) clamp(0.8rem, 4vw, 1.2rem);
+    font-size: clamp(0.8rem, 3.5vw, 0.9rem);
+    border-radius: clamp(20px, 6vw, 25px);
+  }
+  
+  .nav-bar {
+    gap: clamp(0.2rem, 2.0vw, 0.5rem);
+    font-size: clamp(0.6rem, 3.0vw, 0.7rem);
+    padding: clamp(0.5rem, 3vw, 1rem);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .nav-link {
+    margin: clamp(0.2rem, 1vw, 0.3rem) clamp(0.1rem, 1.3vw, 0.3rem);
+    padding: clamp(0.4rem, 2vw, 0.6rem) clamp(0.2rem, 0.5vw, 0.3rem);
+    font-size: clamp(0.8rem, 3.2vw, 0.7rem);
+    border-radius: clamp(15px, 4vw, 18px);
+  }
+  
+  .main-quote {
+    font-size: clamp(1.1rem, 5vw, 1.4rem);
+    line-height: 1.3;
+    text-align: center;
+  }
+  
+  .scatter-quote {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+    line-height: 1.2;
+  }
+  
+  /* Sections maintain consistent full-screen heights on mobile */
+  .section {
+    /* All sections use full viewport height and let components handle internal spacing */
+    padding: 0;
+    margin: 0;
+  }
+  
+  .home-section,
+  .about-section, 
+  .projects-section,
+  .cv-section,
+  .contact-section {
+    min-height: 100vh;
+    min-height: 100dvh; /* Better mobile viewport support */
+  }
+
+  .gallery-section {
+    min-height: 50vh; /* Full viewport height */
+    min-height: 50dvh; /* Better mobile viewport support */
+  }
+}
+
+/* Small Devices (480px-767px) */
+@media (min-width: 480px) and (max-width: 767px) {
+  :host {
+    font-size: clamp(15px, 3.5vw, 16px);
+  }
+  
+  h1 {
+    font-size: clamp(2.5rem, 7vw, 3rem);
+    letter-spacing: clamp(-0.1rem, -0.015em, -0.125rem);
+  }
+  
+  p {
+    font-size: clamp(1rem, 3.5vw, 1.1rem);
+    line-height: 1.6;
+  }
+  
+  main {
+    padding: clamp(0.8rem, 2.5vw, 1.2rem);
+  }
+  
+  .content {
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: clamp(2rem, 5vw, 2.5rem);
+    gap: clamp(1.2rem, 3vw, 1.8rem);
+  }
+  
+  .content h1 {
+    margin-top: clamp(1.2rem, 3vw, 1.5rem);
+    text-align: center;
+  }
+  
+  .content p {
+    margin-top: clamp(1.2rem, 3vw, 1.5rem);
+    text-align: center;
+  }
+  
+  .divider {
+    height: 1px;
+    width: 85%;
+    margin: clamp(1.2rem, 3vw, 1.5rem) auto;
+  }
+  
+  .pill-group {
+    gap: clamp(1rem, 2.5vw, 1.25rem);
+    align-items: center;
+  }
+  
+  .pill {
+    padding: clamp(0.6rem, 2.5vw, 0.8rem) clamp(1rem, 3vw, 1.2rem);
+    font-size: clamp(0.9rem, 3vw, 1rem);
+  }
+  
+  .nav-bar {
+    gap: clamp(0.8rem, 2.5vw, 1rem);
+    font-size: clamp(0.9rem, 3vw, 1rem);
+    padding: clamp(0.8rem, 2.5vw, 1.2rem);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .nav-link {
+    margin: clamp(0.3rem, 1vw, 0.4rem) clamp(0.4rem, 1.5vw, 0.5rem);
+    padding: clamp(0.5rem, 2vw, 0.7rem) clamp(0.8rem, 2.5vw, 1rem);
+    font-size: clamp(0.9rem, 2.8vw, 1rem);
+  }
+  
+  .main-quote {
+    font-size: clamp(1.3rem, 4vw, 1.6rem);
+    text-align: center;
+  }
+  
+  .scatter-quote {
+    font-size: clamp(1.8rem, 5vw, 2.2rem);
+  }
+  
+  /* Consistent section heights on small devices */
+  .section {
+    padding: 0;
+    margin: 0;
+  }
+  
+  .home-section,
+  .about-section,
+  .projects-section,
+  .cv-section,
+  .contact-section {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  .gallery-section {
+    min-height: 50vh; /* Full viewport height */
+    min-height: 50dvh; /* Better mobile viewport support */
+  }
+}
+
+/* Medium Devices - Tablets (768px-1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  h1 {
+    font-size: clamp(2.8rem, 5vw, 3.125rem);
+  }
+  
+  p {
+    font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+  }
+  
+  .content {
+    flex-direction: column;
+    width: 100%;
+    max-width: clamp(600px, 85vw, 700px);
+    margin-bottom: clamp(2.5rem, 4vw, 3rem);
+  }
+  
+  .content h1 {
+    text-align: center;
+  }
+  
+  .content p {
+    text-align: center;
+  }
+  
+  .divider {
+    height: 1px;
+    width: 90%;
+    margin: clamp(1.5rem, 2.5vw, 2rem) auto;
+  }
+  
+  .pill-group {
+    gap: clamp(1.1rem, 2vw, 1.25rem);
+    align-items: center;
+  }
+  
+  .nav-bar {
+    gap: clamp(1rem, 2vw, 1.5rem);
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    padding: clamp(1rem, 2vw, 1.5rem);
+    justify-content: center;
+  }
+  
+  .nav-link {
+    margin: 0 clamp(0.4rem, 1vw, 0.5rem);
+    padding: clamp(0.6rem, 1.5vw, 0.8rem) clamp(1rem, 2vw, 1.2rem);
+  }
+  
+  .main-quote {
+    font-size: clamp(1.6rem, 3vw, 2rem);
+    text-align: center;
+  }
+  
+  .scatter-quote {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+  }
+  
+  /* Maintain consistent viewport heights on tablets */
+  .section {
+    padding: 0;
+    margin: 0;
+  }
+  
+  
+}
+
+/* Large Devices - Small Desktops (1024px-1365px) */
+@media (min-width: 1024px) and (max-width: 1365px) {
+  h1 {
+    font-size: clamp(3rem, 3.5vw, 3.125rem);
+  }
+  
+  .content {
+    flex-direction: row;
+    justify-content: space-around;
+    max-width: clamp(650px, 75vw, 700px);
+  }
+  
+  .content h1,
+  .content p {
+    text-align: left;
+  }
+  
+  .divider {
+    width: 1px;
+    height: auto;
+    margin-inline: clamp(0.4rem, 1vw, 0.5rem);
+    background: var(--red-to-pink-to-purple-vertical-gradient);
+  }
+  
+  .pill-group {
+    align-items: start;
+    gap: clamp(1.15rem, 1.5vw, 1.25rem);
+  }
+  
+  .nav-bar {
+    gap: clamp(1.2rem, 2vw, 1.5rem);
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
+  }
+  
+  .nav-link {
+    margin: 0 clamp(0.4rem, 0.8vw, 0.5rem);
+  }
+  
+  .main-quote {
+    font-size: clamp(1.8rem, 2.5vw, 2rem);
+    text-align: left;
+  }
+  
+  .scatter-quote {
+    font-size: clamp(2.2rem, 3vw, 2.5rem);
+  }
+  
+  /* Desktop maintains consistent viewport heights */
+  .section {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+/* Extra Large Devices - Large Desktops (1366px-1920px) */
+@media (min-width: 1366px) and (max-width: 1920px) {
+  h1 {
+    font-size: 3.125rem;
+  }
+  
+  .content {
+    max-width: 700px;
+  }
+  
+  .main-quote {
+    font-size: clamp(1.8rem, 1.5vw, 2rem);
+  }
+  
+  .scatter-quote {
+    font-size: clamp(2.2rem, 2vw, 2.5rem);
+  }
+}
+
+/* Ultra Wide Screens (1921px+) */
+@media (min-width: 1921px) {
+  :host {
+    max-width: 1920px;
+    margin: 0 auto;
+  }
+  
+  main {
+    max-width: 1920px;
+    margin: 0 auto;
+  }
+  
+  .content {
+    max-width: 700px;
+  }
+  
+  .main-quote {
+    font-size: 2rem;
+  }
+  
+  .scatter-quote {
+    font-size: 2.5rem;
+  }
+}
+
+/* Advanced Section Positioning Examples */
+/*
+You can also use these properties for more precise control:
+
+.your-section {
+  margin-top: 200px;        // Adds space above the section
+  margin-bottom: 150px;     // Adds space below the section
+  padding-top: 120px;       // Internal space at top
+  padding-bottom: 80px;     // Internal space at bottom
+  min-height: 100vh;        // Minimum height (100vh = full viewport)
+  height: 800px;            // Fixed height in pixels
+  position: relative;       // For absolute positioning of children
+  top: 50px;               // Offset from normal position
+  transform: translateY(-20px); // Fine-tune vertical position
+}
+
+For navigation bar offset:
+scroll-margin-top: 80px;    // Space when scrolling to section
+scroll-padding-top: 100px;  // Alternative scroll offset method
+*/
+
+/* Fix for bottom white space and consistent section flow */
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+app-root {
+  display: block;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+/* Ensure router outlet doesn't add extra space */
+router-outlet {
+  display: none;
+}
+
+/* Remove any potential white space at bottom */
+body::after {
+  content: none;
+}
+
+/* Global reset for consistent section behavior */
+* {
+  box-sizing: border-box;
+}
+
+/* Ensure all sections flow seamlessly */
+app-home, app-video, app-about, app-gallery, app-projects, app-contact {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+@media (pointer: coarse) {
+  body.hide-cursor,
+  body.hide-cursor * {
+    cursor: default !important;
+  }
+  .pink-cursor {
+    display: none !important;
+  }
+}

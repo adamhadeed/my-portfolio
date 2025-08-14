@@ -1,0 +1,89 @@
+<div class="full-gallery-container">
+  <div class="gallery-container">
+  <!-- Header -->
+  <header class="gallery-header">
+    <h1>My Creative Works</h1>
+    <p>A curated collection of my works that captures both ideas and creative process behind them.</p>
+  </header>
+
+  <!-- Masonry Gallery -->
+  <div class="masonry-gallery" #masonryContainer>
+    <div class="gallery-item" *ngFor="let item of galleryItems; let i = index" 
+         [attr.data-index]="i"
+         [style.animation-delay.ms]="i * 150"
+         (click)="openModal(item, i)">
+      <div class="image-container">
+        <ng-container *ngIf="item.type === 'image'; else videoThumb">
+          <picture>
+            <source *ngIf="item.webpUrl" [srcset]="item.webpUrl" type="image/webp">
+            <img [src]="item.imageUrl" [alt]="item.title" loading="lazy">
+          </picture>
+        </ng-container>
+        <ng-template #videoThumb>
+          <div class="video-thumb-wrapper" style="position:relative;">
+            <img [src]="item.posterUrl" [alt]="item.title + ' video thumbnail'" loading="lazy" style="width:100%;height:auto;object-fit:cover;">
+            <span class="play-icon-overlay" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;width:48px;height:48px;background:rgba(0,0,0,0.5);border-radius:50%;">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="11,9 21,14 11,19" fill="#fff"/>
+              </svg>
+            </span>
+          </div>
+        </ng-template>
+        <div class="hover-overlay">
+          <div class="hover-content">
+            <h3>{{item.title}}</h3>
+            <p>{{item.category}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Popup -->
+  <div class="modal-overlay" [class.active]="modalActive" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()" [ngClass]="{'portrait-modal-row': isPortraitModalImage}">
+      <button class="modal-close" (click)="closeModal()">×</button>
+      
+      <!-- Navigation Arrows -->
+      <button class="modal-nav-btn modal-prev" 
+              (click)="previousImage()" 
+              *ngIf="currentModalIndex > 0">
+        ‹
+      </button>
+      <button class="modal-nav-btn modal-next" 
+              (click)="nextImage()" 
+              *ngIf="currentModalIndex < galleryItems.length - 1">
+        ›
+      </button>
+      
+      <ng-container *ngIf="currentModalItem?.type === 'image'; else modalMedia">
+        <picture>
+          <source *ngIf="currentModalItem?.webpUrl" [srcset]="currentModalItem?.webpUrl" type="image/webp">
+          <img [src]="currentModalItem?.imageUrl" [alt]="currentModalItem?.title">
+        </picture>
+      </ng-container>
+      <ng-template #modalMedia>
+        <ng-container *ngIf="currentModalItem?.type === 'video'; else modalPdf">
+          <video *ngIf="currentModalItem?.videoUrl" [src]="currentModalItem?.videoUrl" controls autoplay style="max-width:100%;max-height:60vh;display:block;margin:0 auto;"></video>
+        </ng-container>
+        <ng-template #modalPdf>
+          <iframe *ngIf="currentModalItem?.type === 'pdf'" [src]="currentModalItem?.imageUrl" style="width:100vw;max-width:90vw;height:70vh;border:none;display:block;margin:0 auto;"></iframe>
+        </ng-template>
+      </ng-template>
+      <div class="modal-info">
+        <h3>{{currentModalItem?.title}}</h3>
+        <p class="modal-category">{{currentModalItem?.category}}</p>
+        <p class="modal-description">{{currentModalItem?.description}}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back Button -->
+  <button class="back-btn" (click)="goBack()">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Back
+  </button>
+  </div>
+</div>

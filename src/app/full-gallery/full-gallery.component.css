@@ -1,0 +1,573 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700&display=swap');
+/* Disable heavy effects on all touch devices to prevent browser crashes */
+@media (pointer: coarse) {
+  .modal-overlay,
+  .modal-content {
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    background: #111 !important;
+  }
+}
+/* Hide back button when modal is active */
+.modal-overlay.active ~ .back-btn {
+  display: none !important;
+}
+/* Portrait Modal Row Layout (laptop only) */
+@media (min-width: 1024px) {
+  .modal-content.portrait-modal-row {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    max-width: 900px;
+    min-height: 480px;
+    max-height: 80vh;
+    padding: 0;
+  }
+  .modal-content.portrait-modal-row img,
+  .modal-content.portrait-modal-row video {
+    width: auto;
+    min-width: 240px;
+    max-width: 400px;
+    max-height: 80vh;
+    min-height: 240px;
+    object-fit: contain;
+    margin: 0;
+    box-shadow: none;
+    box-sizing: border-box;
+    flex: 0 0 auto;
+  }
+  .modal-content.portrait-modal-row .modal-info {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 2.5rem 2rem;
+    margin-right: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    max-height: 80vh;
+    overflow-y: auto;
+    background: transparent;
+    color: #222;
+    box-sizing: border-box;
+  }
+}
+/* Video Thumbnails Styling */
+.gallery-item video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px;
+  min-height: 180px;
+  max-height: 450px;
+  object-fit: cover;
+  background: #222;
+}
+
+.video-thumb-wrapper {
+  position: relative;
+}
+
+@media (max-width: 1024px) {
+  .gallery-item video {
+    max-height: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-item video {
+    max-height: 400px;
+    min-height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-item video {
+    max-height: 350px;
+    min-height: 150px;
+  }
+}
+
+/* Fade Animation */
+.full-gallery-container {
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+}
+
+.full-gallery-container.fade-in {
+  opacity: 1;
+}
+
+.full-gallery-container.fade-out {
+  opacity: 0;
+}
+
+/* Base Styles */
+:host {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+  background: #111;
+  color: #fff;
+  font-family: 'Raleway', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Gridline Background */
+.gallery-container {
+  position: relative;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.gallery-container::before {
+  --size: 45px;
+  --line: rgba(255, 255, 255, 0.1);
+  content: '';
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  background: 
+    linear-gradient(90deg, var(--line) 1px, transparent 1px var(--size)) 50% 50% / var(--size) var(--size),
+    linear-gradient(var(--line) 1px, transparent 1px var(--size)) 50% 50% / var(--size) var(--size);
+  mask: linear-gradient(-20deg, transparent 50%, white);
+  top: 0;
+  left: 0;
+  transform-style: flat;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Header */
+.gallery-header {
+  text-align: center;
+  padding: 4rem 0 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+.gallery-header h1 {
+  font-size: clamp(3rem, 10vw, 10rem);
+  font-weight: 700;
+  margin: 0 0 1rem;
+  background: linear-gradient(135deg, #FF4A9A, #FF4A9A); 
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+.gallery-header p {
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 1.0);
+  margin: 0;
+}
+
+/* Masonry Gallery - CSS Grid Approach for Exact 3 Columns */
+.masonry-gallery {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Exactly 3 equal columns */
+  gap: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+/* Gallery Items - Fixed 3 Column Layout */
+.gallery-item {
+  width: 100%; /* Take full width of grid cell */
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-play-state: paused; /* Will be activated by adding animate-in class */
+}
+
+.gallery-item.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+  animation-play-state: running;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.image-container {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.image-container:hover {
+  transform: scale(1.05); /* Zoom effect on hover */
+  box-shadow: 0 16px 64px rgba(0, 0, 0, 0.4);
+  /* border-color: rgba(229, 57, 53, 0.3); */
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px;
+  transition: transform 0.4s ease;
+  /* Size limits while maintaining aspect ratio */
+  min-height: 180px;
+  max-height: 450px;
+  object-fit: cover;
+}
+
+/* Responsive height adjustments */
+@media (max-width: 1024px) {
+  .gallery-item img {
+    max-height: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-item img {
+    max-height: 400px;
+    min-height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-item img {
+    max-height: 350px;
+    min-height: 150px;
+  }
+}
+
+/* Hover Overlay Effect */
+.hover-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+}
+
+.image-container:hover .hover-overlay {
+  opacity: 1;
+}
+
+.image-container:hover img {
+  transform: scale(1.1); /* Additional zoom on image */
+}
+
+.hover-content {
+  text-align: center;
+  color: white;
+  transform: translateY(20px);
+  transition: transform 0.4s ease;
+}
+
+.image-container:hover .hover-content {
+  transform: translateY(0);
+}
+
+.hover-content h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hover-content p {
+  font-size: 1rem;
+  opacity: 0.9;
+  margin-bottom: 1rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+/* Modal Popup Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(20px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  background: rgb(0, 0, 0);
+  backdrop-filter: blur(20px);
+  border-radius: 0px;
+  border: 1px solid rgb(0, 0, 0);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  transform: scale(0.8) translateY(50px);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); ;
+}
+
+.modal-overlay.active .modal-content {
+  transform: scale(1) translateY(0);
+}
+
+.modal-content img {
+  width: 100%;
+  height: auto;
+  max-height: calc(70vh - 180px); /* Shrink image if text is long */
+  min-height: 120px;
+  object-fit: contain;
+  display: block;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  opacity: 1;
+}
+
+.modal-content video {
+  width: 100%;
+  height: auto;
+  max-height: calc(70vh - 180px);
+  min-height: 120px;
+  object-fit: contain;
+  display: block;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  opacity: 1;
+}
+
+.modal-content.changing img {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+/* Smooth Modal Info Transitions */
+.modal-info {
+  padding: 2rem;
+  color: white;
+  max-height: 30vh;
+  overflow-y: auto;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.modal-content.changing .modal-info {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  width: 44px;
+  height: 44px;
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 1001;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  background: #FF4A9A;
+  transform: scale(1.05);
+}
+
+.modal-info h3 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0 0 1rem;
+  background: linear-gradient(135deg, #FF4A9A, #FF4A9A);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.modal-category {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0 0 1rem;
+}
+
+.modal-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 1.0);
+  margin: 0;
+}
+
+/* Modern Modal Navigation Arrows */
+.modal-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  width: 52px;
+  height: 52px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 1002;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.modal-prev {
+  left: 20px;
+}
+
+.modal-next {
+  right: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .modal-content {
+    max-width: 95vw;
+    max-height: 95vh;
+  }
+  .modal-info {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-info h3 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Back Button */
+.back-btn {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  background: #FF4A9A;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 1001;
+  font-family: 'Raleway', sans-serif;
+}
+
+.back-btn:hover {
+  background: #ffffff;
+  color: #000000;
+  transform: translateY(-2px);
+}
+
+.back-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Additional Mobile Styles */
+@media (max-width: 480px) {
+  .back-btn {
+    top: 1rem;
+    left: 1rem;
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+  .gallery-header h1 {
+    font-size: 3rem;
+  }
+
+  .gallery-header p {
+    font-size: 1rem;
+  }
+  .modal-close {
+    width: 40px;
+    height: 40px;
+    top: 15px;
+    right: 15px;
+    border-radius: 10px;
+    font-size: 18px;
+  }
+  .modal-nav-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    font-size: 18px;
+  }
+  .modal-prev {
+    left: 10px;
+  }
+  .modal-next {
+    right: 10px;
+  }
+  .masonry-gallery {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  .hover-content h3 {
+    font-size: 0.8rem;
+  }
+  .hover-content p {
+    font-size: 0.6rem;
+  }
+}

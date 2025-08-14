@@ -1,0 +1,53 @@
+html {
+  min-width: 320px;
+}
+.quote-container {
+  max-width: 95vw;
+  margin: 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: clamp(1.5em, 8vw, 8em) clamp(0.5em, 5vw, 4em) 0 clamp(0.5em, 5vw, 4em);
+  box-sizing: border-box;
+}
+
+.scatter-quote {
+  font-size: clamp(2.5em, 15vw, 16em);
+  font-weight: 900;
+  letter-spacing: -0.09em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+  line-height: 0.85;
+  transition: font-size 0.3s;
+  gap: 0.1em;
+  row-gap: 0;
+  width: 100%;
+  text-align: left;
+}
+
+.scatter-letter {
+  display: inline-block;
+  margin: 0 0.002em;
+  font-weight: 900;
+  /* Ensures spaces are visible and wide */
+  white-space: pre; /* Ensures spaces are visible and wide */
+  transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.7s;
+  will-change: transform, opacity; /* Force hardware acceleration for smoother animation */
+  position: relative; /* Ensure proper stacking context */
+  z-index: 1; /* Ensure scatter letters are above other elements */
+}
+
+.scatter-word {
+  display: inline-block;
+  white-space: nowrap; /* Prevent word breaking */
+  margin-right: 0.2em; /* Space between words */
+  line-height: 1; /* Tight line height to keep text bold and impactful */
+}
+

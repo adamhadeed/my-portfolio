@@ -1,0 +1,102 @@
+.video-section {
+  position: relative;
+  width: 100vw;
+  left: 0;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  overflow: hidden;
+  z-index: 1001;
+  box-sizing: border-box;
+  aspect-ratio: 16 / 9;
+  height: auto;
+}
+html, body {
+  overflow-x: hidden;
+}
+
+.about-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Maintains video aspect ratio while filling 16:9 container */
+  object-position: center center; /* Center the video content */
+  margin: 0 !important;
+  border-radius: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  box-shadow: none;
+  padding: 0 !important;
+  box-sizing: border-box;
+}
+
+/* Remove section padding for video */
+#video.section, .video-section.section {
+  padding: 0 !important;
+}
+
+/* All devices maintain 16:9 aspect ratio */
+@media (max-width: 768px) {
+  .video-section {
+    aspect-ratio: 16 / 9; /* Consistent 16:9 on tablets and below */
+    width: 100vw;
+    max-height: 70vh; /* Prevent video from taking too much screen on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .video-section {
+    aspect-ratio: 16 / 9; /* Consistent 16:9 on mobile */
+    width: 100vw;
+    max-height: 60vh; /* More reasonable size on small screens */
+  }
+}
+
+/* Landscape mobile orientation */
+@media (max-width: 768px) and (orientation: landscape) {
+  .video-section {
+    aspect-ratio: 16 / 9; /* Still 16:9 in landscape */
+    max-height: 80vh; /* Better use of space in landscape */
+  }
+}
+
+/* Ultra-wide screens get constrained */
+@media (min-width: 1921px) {
+  .video-section {
+    aspect-ratio: 16 / 9;
+    max-width: 1920px;
+    margin: 0 auto;
+    left: 0;
+    transform: none;
+  }
+}
+
+/* Fallback for browsers without aspect-ratio support */
+@supports not (aspect-ratio: 16 / 9) {
+  .video-section {
+    height: 56.25vw; /* 16:9 aspect ratio fallback (9/16 = 0.5625) */
+  }
+  
+  @media (max-width: 768px) {
+    .video-section {
+      height: 56.25vw;
+      max-height: 70vh;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .video-section {
+      height: 56.25vw;
+      max-height: 60vh;
+    }
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .about-video {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}

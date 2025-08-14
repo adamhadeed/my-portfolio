@@ -1,0 +1,523 @@
+  .project-card.is-open .tap-overlay {
+    height: 80%;
+    bottom: 20%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: auto;
+    display: block;
+  }
+@media (pointer: coarse) {
+  .project-info {
+    pointer-events: none;
+  }
+  .project-card.is-open .project-info {
+    pointer-events: auto;
+  }
+  .tap-overlay {
+    pointer-events: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background: transparent;
+    cursor: pointer;
+    display: block;
+  }
+  .project-link {
+    pointer-events: auto;
+  }
+}
+@media (pointer: coarse) {
+  .tap-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background: transparent;
+    cursor: pointer;
+    display: block;
+  }
+}
+@media (pointer: coarse) {
+  html, body, * {
+    cursor: none !important;
+  }
+}
+/* Touch device tap-to-reveal: show project-info as on hover when .is-open is present */
+@media (pointer: coarse) {
+  .project-card.is-open .project-info {
+    height: 100%;
+  }
+  .project-card.is-open .project-divider,
+  .project-card.is-open .project-description {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .project-card.is-open .project-link {
+    opacity: 1;
+    transform: translateY(0) translateX(-50%);
+  }
+  .project-card.is-open .project-image img {
+    transform: scale(1.1);
+  }
+}
+/* Projects section styles */
+.projects-section {
+    text-align: center;
+    padding: 2rem 1rem;
+    position: relative;
+    z-index: auto; /* Default z-index, will be below fixed elements */
+    margin-top: clamp(4rem, 10vw, 8rem); /* Robust separation from previous section */
+}
+
+.projects-section h2 {
+    font-size: 10rem;
+    margin-bottom: 2.5rem;
+    margin-top: clamp(2rem, 8vw, 3rem);
+}
+
+.projects-section p {
+    font-size: 1.5rem;
+    margin: 0 0 5rem;
+}
+
+/* Project grid layout */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Ensure exactly 3 cards per row on larger screens */
+@media (min-width: 1200px) {
+    .project-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Project card */
+.project-card {
+    position: relative;
+    border-radius: clamp(0.5rem, 2vw, 1rem);
+    overflow: hidden;
+    box-shadow: 0 clamp(0.5rem, 2vw, 1rem) clamp(2rem, 8vw, 3rem) rgba(0, 0, 0, 0.1);
+    height: clamp(18rem, 60vw, 34.375rem);
+    background-color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    counter-increment: project-counter; /* Increment counter for each card */
+    z-index: 0; /* No specific z-index */
+}
+
+/* Reset project counter */
+.project-grid {
+    counter-reset: project-counter; /* Initialize counter for projects */
+    position: relative;
+    z-index: auto; /* Default z-index */
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    z-index: 0; /* Just slightly higher than other cards */
+}
+
+/* Remove the project number class - we'll use pseudo-element instead */
+
+/* Project image */
+.project-image {
+    height: 80%;
+    overflow: hidden;
+    position: relative; /* Establish stacking context */
+    isolation: isolate; /* Create a new stacking context for better z-index control */
+    z-index: auto; /* Default z-index */
+}
+
+/* Project number directly on the image */
+.project-image::after {
+    content: "#" counter(project-counter);
+    position: absolute;
+    top: clamp(0.5rem, 2vw, 1rem);
+    right: clamp(0.5rem, 2vw, 1.125rem);
+    font-size: clamp(1.5rem, 7vw, 5rem);
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    z-index: 2; /* Above the image */
+    pointer-events: none; /* Allow clicks to pass through */
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.1);
+}
+
+/* Project info */
+.project-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20%;
+    background-color: white;
+    padding: 1.5rem;
+    transition: height 0.4s ease;
+    box-sizing: border-box;
+    z-index: 3; /* Higher than project number (2) */
+}
+
+.project-card:hover .project-info {
+    height: 100%;
+    /* background-color: black; */
+    z-index: 3; /* Maintain the same z-index on hover */
+}
+
+.project-info h3 {
+    font-size: 0.9rem;
+    color: #FF4A9A;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0.1rem 0 0.5rem;
+}
+
+/* More specific selector to ensure it's applied */
+.project-info .project-date, 
+.project-date {
+    font-size: 0.9rem !important; /* Made significantly smaller than description */
+    color: #777;
+    text-transform: uppercase;
+    font-weight: 400; /* Normal weight to make it visibly smaller */
+    margin: 0 0 1.5rem;
+}
+
+.project-divider {
+    width: 80%;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin: 0 auto 1.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.project-description {
+    font-size: 0.95rem !important; /* Set explicit size with important to override */
+    line-height: 1.6;
+    color: #555;
+    font-weight: 500; /* Added slightly bolder weight for better contrast */
+    margin: 0 0 1.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    text-align: justify;
+}
+
+.project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: clamp(0.25rem, 2vw, 0.5rem);
+    background-color: #FF4A9A;
+    color: white;
+    text-decoration: none;
+    padding: clamp(0.5rem, 2vw, 0.75rem) clamp(1rem, 5vw, 1.5rem);
+    border-radius: clamp(1rem, 6vw, 2rem);
+    font-size: clamp(0.8rem, 3vw, 0.9rem);
+    font-weight: 600;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(20px) translateX(-50%);
+    transition: opacity 0.4s ease, transform 0.4s ease, background-color 0.3s ease;
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+}
+
+.project-link:hover {
+    background-color: #000000;
+}
+
+/* Show elements on hover */
+.project-card:hover .project-divider,
+.project-card:hover .project-description {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Special case for the link that needs to stay centered */
+.project-card:hover .project-link {
+    opacity: 1;
+    transform: translateY(0) translateX(-50%);
+}
+
+/* Project number doesn't change on hover */
+
+/* Mobile First - Extra Small Devices (320px-479px) */
+@media (max-width: 479px) {
+  .projects-section {
+    padding: clamp(1rem, 4vw, 1.5rem) clamp(0.5rem, 3vw, 1rem);
+  }
+  
+  .projects-section h2 {
+    font-size: clamp(2.5rem, 12vw, 3.5rem);
+    margin-top: clamp(2rem, 8vw, 3rem);
+    margin-bottom: clamp(1.5rem, 6vw, 2rem);
+    line-height: 0.9;
+  }
+  
+  .projects-section p {
+    font-size: clamp(1.1rem, 5vw, 1.3rem);
+    margin: 0 0 clamp(2.5rem, 8vw, 3.5rem);
+    padding: 0 clamp(0.5rem, 2vw, 1rem);
+    line-height: 1.5;
+  }
+  
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1.5rem, 6vw, 2rem);
+    max-width: 100%;
+    padding: 0 clamp(0.5rem, 2vw, 1rem);
+  }
+  
+  .project-card {
+    height: clamp(400px, 120vw, 450px);
+    border-radius: clamp(6px, 2vw, 8px);
+  }
+  
+  .project-image::after {
+    font-size: clamp(3rem, 12vw, 4rem);
+    top: clamp(8px, 3vw, 12px);
+    right: clamp(10px, 4vw, 15px);
+  }
+  
+  .project-info {
+    padding: clamp(1rem, 4vw, 1.2rem);
+  }
+  
+  .project-info h3 {
+    font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+    margin: clamp(0.2rem, 1vw, 0.3rem) 0 clamp(0.3rem, 1.5vw, 0.5rem);
+  }
+  
+  .project-info .project-date {
+    font-size: clamp(0.6rem, 2.5vw, 0.7rem) !important;
+    margin: 0 0 clamp(1rem, 4vw, 1.2rem);
+  }
+  
+  .project-description {
+    font-size: clamp(0.55rem, 2.5vw, 0.75rem) !important;
+    line-height: 1.5;
+    margin: 0 0 clamp(1rem, 4vw, 1.2rem);
+  }
+  
+  .project-link {
+    padding: clamp(8px, 3vw, 10px) clamp(18px, 6vw, 22px);
+    font-size: clamp(0.8rem, 3vw, 0.85rem);
+    border-radius: clamp(20px, 6vw, 25px);
+    bottom: clamp(1rem, 4vw, 1.2rem);
+    pointer-events: auto;
+    z-index: 201;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .tap-overlay {
+    z-index: 100;
+    pointer-events: auto;
+  }
+}
+
+/* Small Devices (480px-767px) */
+@media (min-width: 480px) and (max-width: 767px) {
+  .projects-section {
+    padding: clamp(1.2rem, 4vw, 1.8rem) clamp(0.8rem, 3vw, 1.2rem);
+  }
+  
+  .projects-section h2 {
+    font-size: clamp(3.5rem, 10vw, 4.5rem);
+    margin-top: clamp(2rem, 8vw, 3rem);
+    margin-bottom: clamp(1.8rem, 5vw, 2.2rem);
+  }
+  
+  .projects-section p {
+    font-size: clamp(1.2rem, 4vw, 1.4rem);
+    margin: 0 0 clamp(3rem, 7vw, 4rem);
+    padding: 0 clamp(0.8rem, 3vw, 1.2rem);
+  }
+  
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 5vw, 2.5rem);
+    padding: 0 clamp(0.8rem, 3vw, 1.2rem);
+  }
+  
+  .project-card {
+    height: clamp(450px, 110vw, 500px);
+    border-radius: clamp(6px, 1.5vw, 8px);
+  }
+  
+  .project-image::after {
+    font-size: clamp(4rem, 10vw, 4.5rem);
+    top: clamp(10px, 2.5vw, 15px);
+    right: clamp(12px, 3vw, 18px);
+  }
+  
+  .project-info {
+    padding: clamp(1.2rem, 3.5vw, 1.5rem);
+  }
+  
+  .project-info h3 {
+    font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+  }
+  
+  .project-description {
+    font-size: clamp(0.9rem, 3.2vw, 0.95rem) !important;
+  }
+  
+  .project-link {
+    padding: clamp(9px, 2.5vw, 11px) clamp(20px, 5vw, 25px);
+    font-size: clamp(0.85rem, 2.8vw, 0.9rem);
+    border-radius: clamp(22px, 5vw, 28px);
+  }
+}
+
+/* Medium Devices - Tablets (768px-1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .projects-section {
+    padding: clamp(1.5rem, 3vw, 2rem) clamp(1rem, 2vw, 1.5rem);
+  }
+  
+  .projects-section h2 {
+    font-size: clamp(5rem, 8vw, 7rem);
+    margin-top: clamp(2rem, 8vw, 3rem);
+    margin-bottom: clamp(2rem, 4vw, 2.5rem);
+  }
+  
+  .projects-section p {
+    font-size: clamp(1.3rem, 2.8vw, 1.5rem);
+    margin: 0 0 clamp(3.5rem, 6vw, 4.5rem);
+  }
+  
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(2.5rem, 4vw, 3rem);
+    max-width: clamp(700px, 90vw, 900px);
+  }
+  
+  .project-card {
+    height: clamp(480px, 65vw, 520px);
+  }
+  
+  .project-image::after {
+    font-size: clamp(4.5rem, 6vw, 5rem);
+    top: clamp(12px, 2vw, 15px);
+    right: clamp(15px, 2.5vw, 18px);
+  }
+  
+  .project-info {
+    padding: clamp(1.3rem, 2.5vw, 1.5rem);
+  }
+  
+  .project-info h3 {
+    font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+  }
+  
+  .project-description {
+    font-size: clamp(0.9rem, 1.8vw, 0.95rem) !important;
+  }
+  
+  .project-link {
+    padding: clamp(9px, 1.5vw, 10px) clamp(22px, 3vw, 25px);
+    font-size: clamp(0.85rem, 1.6vw, 0.9rem);
+  }
+}
+
+/* Large Devices - Small Desktops (1024px-1365px) */
+@media (min-width: 1024px) and (max-width: 1365px) {
+  .projects-section {
+    padding: clamp(1.8rem, 2.5vw, 2rem) clamp(1rem, 1.5vw, 1.2rem);
+  }
+  
+  .projects-section h2 {
+    font-size: clamp(7rem, 9vw, 9rem);
+    margin-top: clamp(2rem, 8vw, 3rem);
+    margin-bottom: clamp(2.2rem, 3vw, 2.5rem);
+  }
+  
+  .projects-section p {
+    font-size: clamp(1.4rem, 2vw, 1.5rem);
+    margin: 0 0 clamp(4rem, 5vw, 5rem);
+  }
+  
+  .project-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(2.5rem, 3vw, 3rem);
+    max-width: clamp(1000px, 85vw, 1200px);
+  }
+  
+  .project-card {
+    height: clamp(520px, 45vw, 550px);
+  }
+  
+  .project-image::after {
+    font-size: clamp(4.8rem, 4vw, 5rem);
+  }
+  
+  .project-info h3 {
+    font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+  }
+  
+  .project-description {
+    font-size: clamp(0.9rem, 1.2vw, 0.95rem) !important;
+  }
+  
+  .project-link {
+    font-size: clamp(0.85rem, 1.1vw, 0.9rem);
+  }
+}
+
+/* Extra Large Devices - Large Desktops (1366px-1920px) */
+@media (min-width: 1366px) and (max-width: 1920px) {
+  .projects-section h2 {
+    font-size: clamp(9rem, 6vw, 10rem);
+    margin-top: clamp(2rem, 8vw, 3rem);
+  }
+  
+  .project-grid {
+    max-width: clamp(1200px, 80vw, 1400px);
+  }
+  
+  .project-card {
+    height: 550px;
+  }
+}
+
+/* Ultra Wide Screens (1921px+) */
+@media (min-width: 1921px) {
+  .projects-section {
+    max-width: 1920px;
+    margin: 0 auto;
+  }
+  
+  .projects-section h2 {
+    font-size: 10rem;
+    margin-top: clamp(2rem, 8vw, 3rem);
+  }
+  
+  .project-grid {
+    max-width: 1400px;
+  }
+}
+
+

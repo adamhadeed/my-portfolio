@@ -1,0 +1,32 @@
+<section class="about-section section">
+  <div class="about-content-row split-horizontal">
+    <div class="about-left">
+      <h1 class="about-heading-main">A Graphics and Multimedia Software student with a deep love for all creative things.</h1>
+      <h2 class="about-heading-secondary">I have a <span class="text-highlight">sharp eye for what looks and feels right.</span> Behind every creative piece I see, I’ve probably already paused to figure out how it was made because I'm always curious about both art and the process.</h2>
+    </div>
+    <div class="about-right">
+      <div class="mbti-flip-card" tabindex="0">
+        <input type="checkbox" id="mbti-flip-toggle" class="mbti-flip-toggle" aria-label="Flip card" #mbtiToggle />
+        <div class="mbti-flip-card-inner"
+          (click)="onMbtiFlipCardTap(mbtiToggle, $event)"
+          style="touch-action: manipulation; cursor: pointer;">
+          <div class="mbti-flip-card-front">
+            <div class="mbti-front-content">
+              <div class="mbti-main">Guess my MBTI</div>
+              <div class="mbti-sub" aria-label="Reveal">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;">
+                  <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="mbti-flip-card-back">
+            <div class="mbti-back-main">ENFP</div>
+            <div class="mbti-corner corner-1">Expressive</div>
+            <div class="mbti-corner corner-2">Imaginative</div>
+            <div class="mbti-corner corner-3">Empathetic</div>
+            <div class="mbti-corner corner-4">Flexible</div>
+          </div>
+        </div>
+      </div>
+    </div>
