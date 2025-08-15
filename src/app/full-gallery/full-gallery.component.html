@@ -8,10 +8,10 @@
 
   <!-- Masonry Gallery -->
   <div class="masonry-gallery" #masonryContainer>
-    <div class="gallery-item" *ngFor="let item of galleryItems; let i = index" 
-         [attr.data-index]="i"
-         [style.animation-delay.ms]="i * 150"
-         (click)="openModal(item, i)">
+  <div class="gallery-item" *ngFor="let item of galleryItems; let i = index" 
+     [attr.data-index]="i"
+     [style.transitionDelay]="(i * 150) + 'ms'"
+     (click)="openModal(item, i)">
       <div class="image-container">
         <ng-container *ngIf="item.type === 'image'; else videoThumb">
           <picture>
@@ -58,7 +58,11 @@
       
       <ng-container *ngIf="currentModalItem?.type === 'image'; else modalMedia">
         <picture>
+          <!-- Mobile-optimized WebP for small screens -->
+          <source *ngIf="currentModalItem?.webpUrlMobile" [srcset]="currentModalItem?.webpUrlMobile" type="image/webp" media="(max-width: 900px)">
+          <!-- Desktop WebP -->
           <source *ngIf="currentModalItem?.webpUrl" [srcset]="currentModalItem?.webpUrl" type="image/webp">
+          <!-- Fallback original image -->
           <img [src]="currentModalItem?.imageUrl" [alt]="currentModalItem?.title">
         </picture>
       </ng-container>

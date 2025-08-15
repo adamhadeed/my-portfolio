@@ -182,27 +182,15 @@
   cursor: pointer;
   opacity: 0;
   transform: translateY(30px);
-  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-  animation-play-state: paused; /* Will be activated by adding animate-in class */
+  transition: opacity 0.5s, transform 0.5s;
 }
 
 .gallery-item.animate-in {
   opacity: 1;
-  transform: translateY(0);
-  animation-play-state: running;
+  transform: none;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+
 
 .image-container {
   position: relative;

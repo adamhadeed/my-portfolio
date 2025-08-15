@@ -7,6 +7,7 @@ interface GalleryItem {
   type: 'image' | 'video' | 'pdf';
   imageUrl?: string;
   webpUrl?: string;
+  webpUrlMobile?: string; // mobile-optimized WebP image
   videoUrl?: string;
   posterUrl?: string; // for video thumbnails
   title: string;
@@ -35,6 +36,7 @@ export class FullGalleryComponent implements OnInit, OnDestroy, AfterViewInit {
       type: 'image',
       imageUrl: 'assets/1.png',
       webpUrl: 'assets/1.webp',
+      webpUrlMobile: 'assets/1-mobile.webp',
       title: 'TEDxUTM2025 Merchandise Photoshoot',
       category: 'Photography',
       description: 'A fun shoot I did for TEDxUTM tee which played with angle and perspective. It focused on the personality behind it. '
@@ -43,6 +45,7 @@ export class FullGalleryComponent implements OnInit, OnDestroy, AfterViewInit {
       type: 'image',
       imageUrl: 'assets/2.png',
       webpUrl: 'assets/2.webp',
+      webpUrlMobile: 'assets/2-mobile.webp',
       title: 'TEDxUTM2025 Merchandise Photoshoot',
       category: 'Photography',
       description: 'Shot the TEDxUTM tee against a mosaic staircase as I loved how the colors and textures played with the silhouette. Felt like the stairs align with geometrical theme that I wanted to express alongside with the ruler design.'
@@ -51,6 +54,7 @@ export class FullGalleryComponent implements OnInit, OnDestroy, AfterViewInit {
       type: 'image',
       imageUrl: 'assets/3.png',
       webpUrl: 'assets/3.webp',
+      webpUrlMobile: 'assets/3-mobile.webp',
       title: 'TEDxUTM2025 Main Poster',
       category: 'Photography',
       description: 'A clear UTM sky with a friend in frame. Used as the main poster for TEDxUTM2025. It captures the vibrant essence of the event.'
@@ -67,6 +71,7 @@ export class FullGalleryComponent implements OnInit, OnDestroy, AfterViewInit {
       type: 'image',
       imageUrl: 'assets/5.png',
       webpUrl: 'assets/5.webp',
+      webpUrlMobile: 'assets/5-mobile.webp',
       title: 'Talking-Ish 4.0 Poster',
       category: 'Graphic Design',
       description: 'Poster that is created entirely through manual design processes (without AI) to ensure authentic visual storytelling and a genuine connection with the community.'
@@ -75,6 +80,7 @@ export class FullGalleryComponent implements OnInit, OnDestroy, AfterViewInit {
       type: 'image',
       imageUrl: 'assets/6.JPG',
       webpUrl: 'assets/6.webp',
+      webpUrlMobile: 'assets/6-mobile.webp',
       title: 'TEDxUTM2025 Merchandise Design',
       category: 'Graphic Design',
       description: 'A distinctive tee design to make the branding stand out more, focusing on trend and wearability.'
@@ -83,6 +89,7 @@ export class FullGalleryComponent implements OnInit, OnDestroy, AfterViewInit {
       type: 'image',
       imageUrl: 'assets/7.png',
       webpUrl: 'assets/7.webp',
+      webpUrlMobile: 'assets/7-mobile.webp',
       title: 'TEDxUTM2025 Merchandise Design',
       category: 'Graphic Design',
       description: 'A distinctive tee design to make the branding stand out more, focusing on trend and wearability.'
@@ -91,6 +98,7 @@ export class FullGalleryComponent implements OnInit, OnDestroy, AfterViewInit {
       type: 'image',
       imageUrl: 'assets/8.png',
       webpUrl: 'assets/8.webp',
+      webpUrlMobile: 'assets/8-mobile.webp',
       title: 'Merchandise Marketing',
       category: 'Marketing Campaign',
       description: 'Strategized and executed targeted marketing campaigns to effectively promote TEDxUTM2025 merchandise.'
@@ -107,6 +115,7 @@ export class FullGalleryComponent implements OnInit, OnDestroy, AfterViewInit {
       type: 'image',
       imageUrl: 'assets/10.jpg',
       webpUrl: 'assets/10.webp',
+      webpUrlMobile: 'assets/10-mobile.webp',
       title: 'Department Photoshoot',
       category: 'Photography',
       description: 'Executed a unique “back to school” themed photoshoot for each department. Got creative with diy lighting and backdrops setup to highlight the distinct character and energy of every team.'
@@ -123,6 +132,7 @@ export class FullGalleryComponent implements OnInit, OnDestroy, AfterViewInit {
       type: 'image',
       imageUrl: 'assets/12.png',
       webpUrl: 'assets/12.webp',
+      webpUrlMobile: 'assets/12-mobile.webp',
       title: 'Performance Announcement',
       category: 'Graphic Design',
       description: 'Designed an eye-catching graphic to announce upcoming performances, combining clear information with engaging visuals to capture audience interest and boost event attendance.'
@@ -131,6 +141,7 @@ export class FullGalleryComponent implements OnInit, OnDestroy, AfterViewInit {
       type: 'image',
       imageUrl: 'assets/13.png',
       webpUrl: 'assets/13.webp',
+      webpUrlMobile: 'assets/13-mobile.webp',
       title: 'Totebag Sale Poster',
       category: 'Graphic Design',
       description: 'A vibrant poster showcasing the versatility of the tote bag, using playful visuals to highlight everything you can fit inside'
@@ -147,6 +158,7 @@ export class FullGalleryComponent implements OnInit, OnDestroy, AfterViewInit {
       type: 'image',
       imageUrl: 'assets/15.png',
       webpUrl: 'assets/15.webp',
+      webpUrlMobile: 'assets/15-mobile.webp',
       title: 'Merch Sales',
       category: 'Graphic Design',
       description: 'Clear and engaging sales visuals featuring custom illustrations to highlight pricing and discounts, making it easy for the audience to understand and act on merchandise offers.'
@@ -155,6 +167,7 @@ export class FullGalleryComponent implements OnInit, OnDestroy, AfterViewInit {
       type: 'image',
       imageUrl: 'assets/16.png',
       webpUrl: 'assets/16.webp',
+      webpUrlMobile: 'assets/16-mobile.webp',
       title: 'Event Countdown',
       category: 'Graphic Design',
       description: 'Compelling countdown poster that builds anticipation and keeps the audience engaged as the event day approaches.'
@@ -163,6 +176,7 @@ export class FullGalleryComponent implements OnInit, OnDestroy, AfterViewInit {
       type: 'image',
       imageUrl: 'assets/17.png',
       webpUrl: 'assets/17.webp',
+      webpUrlMobile: 'assets/17-mobile.webp',
       title: 'Performance Announcement',
       category: 'Graphic Design',
       description: 'Designed an eye-catching graphic to announce upcoming performances, combining clear information with engaging visuals to capture audience interest and boost event attendance.'
@@ -171,6 +185,7 @@ export class FullGalleryComponent implements OnInit, OnDestroy, AfterViewInit {
       type: 'image',
       imageUrl: 'assets/18.pdf',
       webpUrl: 'assets/18.pdf',
+      webpUrlMobile: 'assets/18-mobile.pdf',
       title: 'TEDxUTM2025 Booklet',
       category: 'Graphic Design',
       description: 'Designed the TEDxUTM booklet to guide attendees through the event with clear layouts to create an informative and memorable keepsake.'
@@ -179,6 +194,7 @@ export class FullGalleryComponent implements OnInit, OnDestroy, AfterViewInit {
       type: 'image',
       imageUrl: 'assets/19.png',
       webpUrl: 'assets/19.webp',
+      webpUrlMobile: 'assets/19-mobile.webp',
       title: 'Logo Reveal',
       category: 'Graphic Design',
       description: 'Logo reveal that captures the brand\'s essence to enhance recognition and set a tone for the event.'
@@ -187,6 +203,7 @@ export class FullGalleryComponent implements OnInit, OnDestroy, AfterViewInit {
       type: 'image',
       imageUrl: 'assets/20.png',
       webpUrl: 'assets/20.webp',
+      webpUrlMobile: 'assets/20-mobile.webp',
       title: 'Team Recruitment Poster',
       category: 'Graphic Design',
       description: 'Recruitment campaign designed to attract passionate individuals using clear messaging.'
@@ -195,6 +212,7 @@ export class FullGalleryComponent implements OnInit, OnDestroy, AfterViewInit {
       type: 'image',
       imageUrl: 'assets/21.png',
       webpUrl: 'assets/21.webp',
+      webpUrlMobile: 'assets/21-mobile.webp',
       title: 'TEDxUTM2025 Speaker Announcement',
       category: 'Graphic Design',
       description: 'Engaging graphic series to introduce the TEDxUTM2025 speakers that highlight their unique stories and expertise to build excitement for the event.'
@@ -203,6 +221,7 @@ export class FullGalleryComponent implements OnInit, OnDestroy, AfterViewInit {
       type: 'image',
       imageUrl: 'assets/22.png',
       webpUrl: 'assets/22.webp',
+      webpUrlMobile: 'assets/22-mobile.webp',
       title: 'TEDxUTM2025 Speaker Announcement',
       category: 'Graphic Design',
       description: 'Engaging graphic series to introduce the TEDxUTM2025 speakers that highlight their unique stories and expertise to build excitement for the event.'
@@ -211,6 +230,7 @@ export class FullGalleryComponent implements OnInit, OnDestroy, AfterViewInit {
       type: 'image',
       imageUrl: 'assets/23.png',
       webpUrl: 'assets/23.webp',
+      webpUrlMobile: 'assets/23-mobile.webp',
       title: 'TEDxUTM2025 Speaker Announcement',
       category: 'Graphic Design',
       description: 'Engaging graphic series to introduce the TEDxUTM2025 speakers that highlight their unique stories and expertise to build excitement for the event.'
@@ -219,6 +239,7 @@ export class FullGalleryComponent implements OnInit, OnDestroy, AfterViewInit {
       type: 'image',
       imageUrl: 'assets/24.png',
       webpUrl: 'assets/24.webp',
+      webpUrlMobile: 'assets/24-mobile.webp',
       title: 'TEDxUTM2025 Speaker Announcement',
       category: 'Graphic Design',
       description: 'Engaging graphic series to introduce the TEDxUTM2025 speakers that highlight their unique stories and expertise to build excitement for the event.'
@@ -227,6 +248,7 @@ export class FullGalleryComponent implements OnInit, OnDestroy, AfterViewInit {
       type: 'image',
       imageUrl: 'assets/25.png',
       webpUrl: 'assets/25.webp',
+      webpUrlMobile: 'assets/25-mobile.webp',
       title: 'TEDxUTM2025 Speaker Announcement',
       category: 'Graphic Design',
       description: 'Engaging graphic series to introduce the TEDxUTM2025 speakers that highlight their unique stories and expertise to build excitement for the event.'
@@ -235,6 +257,7 @@ export class FullGalleryComponent implements OnInit, OnDestroy, AfterViewInit {
       type: 'image',
       imageUrl: 'assets/26.png',
       webpUrl: 'assets/26.webp',
+      webpUrlMobile: 'assets/26-mobile.webp',
       title: 'TEDxUTM2025 Speaker Announcement',
       category: 'Graphic Design',
       description: 'Engaging graphic series to introduce the TEDxUTM2025 speakers that highlight their unique stories and expertise to build excitement for the event.'
@@ -243,6 +266,7 @@ export class FullGalleryComponent implements OnInit, OnDestroy, AfterViewInit {
       type: 'image',
       imageUrl: 'assets/27.png',
       webpUrl: 'assets/27.webp',
+      webpUrlMobile: 'assets/27-mobile.webp',
       title: 'TEDxUTM2025 Speaker Announcement',
       category: 'Graphic Design',
       description: 'Engaging graphic series to introduce the TEDxUTM2025 speakers that highlight their unique stories and expertise to build excitement for the event.'
@@ -251,6 +275,7 @@ export class FullGalleryComponent implements OnInit, OnDestroy, AfterViewInit {
       type: 'image',
       imageUrl: 'assets/28.png',
       webpUrl: 'assets/28.webp',
+      webpUrlMobile: 'assets/28-mobile.webp',
       title: 'Event Registration',
       category: 'Graphic Design',
       description: 'A poster with balanced creativity with clarity, providing attendees an inviting way to join while reflecting the event\'s artistic identity.'
@@ -259,6 +284,7 @@ export class FullGalleryComponent implements OnInit, OnDestroy, AfterViewInit {
       type: 'image',
       imageUrl: 'assets/29.png',
       webpUrl: 'assets/29.webp',
+      webpUrlMobile: 'assets/29-mobile.webp',
       title: 'TEDxUTM2025 Certificate',
       category: 'Graphic Design',
       description: 'An elegant and professional certificate design to recognize and celebrate the contributions of TEDxUTM participants.'
@@ -267,6 +293,7 @@ export class FullGalleryComponent implements OnInit, OnDestroy, AfterViewInit {
       type: 'image',
       imageUrl: 'assets/30.png',
       webpUrl: 'assets/30.webp',
+      webpUrlMobile: 'assets/30-mobile.webp',
       title: 'TEDxUTM2025 Ticket',
       category: 'Graphic Design',
       description: 'Designed a physical TEDxUTM2025 ticket incorporating an interactive \'reflection\' feature to give a memorable and functional keepsake for attendees.'
@@ -338,14 +365,9 @@ export class FullGalleryComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private initializeAnimations(): void {
     if (!isPlatformBrowser(this.platformId)) return;
-
     const items = document.querySelectorAll('.gallery-item');
-    items.forEach((item, index) => {
-      const timeout = setTimeout(() => {
-        item.classList.add('animate-in');
-      }, index * 150); // Sequential fade-in with 150ms delay between items
-      
-      this.animationTimeouts.push(timeout);
+    items.forEach(item => {
+      item.classList.add('animate-in');
     });
   }
 

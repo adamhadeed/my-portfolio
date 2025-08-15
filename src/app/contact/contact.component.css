@@ -37,7 +37,7 @@
   overflow: hidden;
   margin-bottom: 1.1rem;
   border: 3px solid #222;
-  background: #ff0000;
+  background: #000000;
 }
 .contact-avatar img {
   width: 100%;
@@ -52,7 +52,7 @@
   text-align: center;
 }
 .contact-role {
-  color: #ff00cc;
+  color: #FF4A9A;
   font-size: 1.05rem;
   font-weight: 400;
   margin-bottom: 1.2rem;

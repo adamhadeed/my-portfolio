@@ -11,7 +11,8 @@
          (touchend)="onProjectCardTap(i, $event)">
         <div class="project-image">
           <picture>
-            <source *ngIf="project.image.endsWith('.webp')" [srcset]="project.image" type="image/webp">
+            <source [srcset]="project.imageMobile" media="(max-width: 800px)" type="image/webp">
+            <source [srcset]="project.image" type="image/webp">
             <img [src]="project.image" [alt]="project.title" loading="lazy" decoding="async" />
           </picture>
         </div>
