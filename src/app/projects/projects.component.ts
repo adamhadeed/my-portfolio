@@ -13,7 +13,7 @@ export class ProjectsComponent {
   projects = [
     {
       image: 'assets/Project1.JPG',
-      imageMobile: 'assets/Project1-mobile.webp',
+      imageMobile: 'assets/Project1.JPG',
       title: 'ECHORUSH: GAME FOR THE VISUALLY IMPAIRED',
       date: 'Ongoing',
       description: 'An innovative audio-based game designed to provide an immersive and inclusive gaming experience for visually impaired players. Echorush aligns with SDG 10 (Reduced Inequalities) and SDG 3 (Good Health & Well-being), proving that games can be both fun and empowering for everyone.',
@@ -29,7 +29,7 @@ export class ProjectsComponent {
     },
     {
       image: 'assets/Project2.5.JPG',
-      imageMobile: 'assets/Project2.5-mobile.webp',
+      imageMobile: 'assets/Project2.5.JPG',
       title: 'Director, Putrajaya Festival of Ideas 2024',
       date: 'November 2024',
       description: 'Directed the Putrajaya Talk from start to finish attended by YBhg. Datuk Prof. Dr. Azlinda Azman, the Director General of Higher Education. It involved planning, coordination and on-site execution. I also managed multiple departments to ensure the program ran smoothly and the event atmosphere matched its vision. It was successful thanks to the team as we delivered an impactful experience for all attendees and speakers.'
