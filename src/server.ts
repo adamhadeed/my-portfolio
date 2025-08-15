@@ -64,4 +64,10 @@ if (isMainModule(import.meta.url)) {
   });
 }
 
-export default app;
+import { createServer, createViteServer } from '@netlify/angular-runtime/server';
+
+export default createServer({
+  async getViteServer() {
+    return await createViteServer();
+  }
+});
