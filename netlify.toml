@@ -1,3 +1,4 @@
 [build]
   publish = "dist/my-portfolio-website/browser"
   command = "ng build --configuration production"
+

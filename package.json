@@ -2,12 +2,12 @@
   "name": "my-portfolio-website",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "serve:ssr:my-portfolio-website-2": "node dist/my-portfolio-website-2/server/server.mjs"
+  "ng": "ng",
+  "start": "ng serve",
+  "build": "ng build --configuration production",
+  "watch": "ng build --watch --configuration development",
+  "test": "ng test",
+  "serve:ssr:my-portfolio-website-2": "node dist/my-portfolio-website-2/server/server.mjs"
   },
   "private": true,
   "dependencies": {
